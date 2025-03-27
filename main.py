@@ -22,5 +22,5 @@ def build_knowledge_graph(openalex_data, semantic_scholar_data, arxiv_data):
 
 
 if __name__ == "__main__":
-    paper_retriever = PaperRetriever(max_results=100)
-    paper_retriever.run(output_file="data/ai_research_papers.json")
+    paper_retriever = PaperRetriever()
+    paper_retriever.run(output_file="data/openalex_research_papers.json")
