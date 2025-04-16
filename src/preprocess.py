@@ -1,8 +1,7 @@
 import requests
 import json
 import time
-from tqdm import tqdm
-
+import datetime
 from src.openalex import format_paper
 
 
@@ -16,34 +15,67 @@ class PaperRetriever:
     FILTER_QUERY = "primary_location.source.id:s2485537415|s4306512817|s4210176548|s4363607748|s4363607701,primary_topic.subfield.id:subfields/1702|subfields/1707"
     PER_PAGE = 100
     SLEEP_TIME = 1  # To avoid rate limits
+    MAX_REQUESTS_PER_DAY = 100000
+    REQUEST_COUNT = 0  # Track requests
+    FIRST_REQUEST_TIME = None  # Timestamp of the first request
 
     def __init__(self):
         """Initializes the PaperRetriever."""
-        self.nodes = {"works": [], "authors": []}  # , "topics": []}
-        self.edges = {
-            # "citations": [],
-            "related_work": {},
-            "writes_work": {},
-            # "same_topic": [],
+        self.data = {
+            "works": [],
+            "authors": [],
+            "citations": [],
+            "related_work": [],
+            "writes_work": [],
         }
+
         self.authors_seen = set()
-        # self.topics_seen = set()
         self.papers_seen = set()
-        # self.topic_to_papers = {}  # Maps topic_id -> list of paper_ids
+
+    def _get_seconds_until_next_window(self):
+        """Returns the number of seconds until 24 hours after the first request."""
+        if not self.FIRST_REQUEST_TIME:
+            return 0  # No waiting needed yet
+
+        elapsed_time = (
+            datetime.datetime.now() - self.FIRST_REQUEST_TIME
+        ).total_seconds()
+        return max(0, 86400 - elapsed_time)  # 86400 seconds in a day
+
+    def _rate_limit(self):
+        """Ensures compliance with the 100K requests/day limit."""
+        if self.FIRST_REQUEST_TIME is None:
+            self.FIRST_REQUEST_TIME = datetime.datetime.now()
+
+        self.REQUEST_COUNT += 1
+
+        if self.REQUEST_COUNT >= self.MAX_REQUESTS_PER_DAY:
+            sleep_time = self._get_seconds_until_next_window()
+            print(
+                f"⚠️ Request limit ({self.MAX_REQUESTS_PER_DAY}) reached. Sleeping for {sleep_time / 3600:.2f} hours."
+            )
+            time.sleep(sleep_time)  # Sleep until 24 hours after the first request
+            self.REQUEST_COUNT = 0  # Reset counter
+            self.FIRST_REQUEST_TIME = datetime.datetime.now()  # Start new 24h window
+
+        if self.REQUEST_COUNT % 1000 == 0:
+            print(f"📊 {self.REQUEST_COUNT} requests sent so far.")
+
+        # time.sleep(self.SLEEP_TIME)  # Control rate
 
     def fetch_papers(self):
         """Fetches all papers using cursor-based pagination."""
         cursor = "*"
         total_fetched = 0
-        i = 0
 
-        while i != 3:
+        while True:
             params = {
                 "cursor": cursor,
                 "filter": self.FILTER_QUERY,
                 "per_page": self.PER_PAGE,
             }
             response = requests.get(self.OPENALEX_URL, params=params)
+            self._rate_limit()  # Ensure compliance
 
             if response.status_code == 200:
                 data = response.json()
@@ -60,16 +92,12 @@ class PaperRetriever:
                     total_fetched += 1
 
                 print(f"✅ Processed {total_fetched} papers so far...")
-                time.sleep(self.SLEEP_TIME)  # Avoid API rate limits
-                i += 1
+                # time.sleep(self.SLEEP_TIME)  # Avoid API rate limits
             else:
                 print(f"⚠️ OpenAlex API error: {response.status_code}")
                 break
 
         print(f"🎯 Finished fetching. Total papers processed: {total_fetched}")
-
-        # Create topic-based links after processing all papers
-        # self.create_topic_links()
 
     def _get_citations_openalex(self, paper):
         if paper.get("cited_by_api_url", None):
@@ -80,29 +108,15 @@ class PaperRetriever:
         return []
 
     def process_paper(self, paper):
-        """Extracts and processes nodes and edges from a paper."""
+        """Extracts and processes nodes and.data from a paper."""
         paper_id = paper["id"]
 
         if paper_id in self.papers_seen:
             return  # Skip duplicates
-        self.papers_seen.add(paper_id)
 
         # Add work node
-        self.nodes["works"].append(format_paper(paper))
-
-        """# Add topic node & track paper under its topic
-        topics = paper.get("topics", [])
-        for topic in topics:
-            topic_id = topic.get("id")
-            topic_name = topic.get("display_name")
-            if topic_id not in self.topics_seen:
-                self.nodes["topics"].append({"id": topic_id, "name": topic_name})
-                self.topics_seen.add(topic_id)
-
-            # Store paper under its topic
-            if topic_id not in self.topic_to_papers:
-                self.topic_to_papers[topic_id] = []
-            self.topic_to_papers[topic_id].append(paper_id)"""
+        self.papers_seen.add(paper_id)
+        self.data["works"].append(format_paper(paper))
 
         # Process authors
         for author in paper.get("authorships", []):
@@ -113,70 +127,47 @@ class PaperRetriever:
                 continue
 
             if author_id not in self.authors_seen:
-                self.nodes["authors"].append({"id": author_id, "name": author_name})
+                self.data["authors"].append({"id": author_id, "name": author_name})
                 self.authors_seen.add(author_id)
 
-            if author_id not in self.edges["writes_work"]:
-                self.edges["writes_work"][author_id] = [paper_id]
-            else:
-                self.edges["writes_work"][author_id].append(paper_id)
+            self.data["writes_work"].append(
+                {"author_id": author_id, "paper_id": paper_id}
+            )
 
         # Process citations (papers citing this work)
-        """for citing_paper in self._get_citations_openalex(paper):
+        for citing_paper in self._get_citations_openalex(paper):
             citing_paper_id = citing_paper.get("id")
-            self.edges["citations"].append(
-                {"source": citing_paper_id, "target": paper_id}
-            )
+
             # Check if citing paper is already processed
-            if citing_paper_id not in self.papers_seen:
-                self.papers_seen.add(citing_paper_id)
-                self.nodes["works"].append(format_paper(citing_paper))"""
+            if citing_paper_id in self.papers_seen:
+                self.data["citations"].append({"from": paper_id, "to": citing_paper_id})
 
         # Process related work
         for referenced_paper in paper.get("related_works", []):
             response = requests.get(
                 f"{self.OPENALEX_URL}/{referenced_paper.split('/')[-1]}"
             )
+            self._rate_limit()  # Ensure compliance
             if response.status_code == 200:
                 ref_paper = response.json()
                 ref_paper_id = ref_paper.get("id")
 
-                if paper_id not in self.edges["related_work"]:
-                    self.edges["related_work"][paper_id] = [ref_paper_id]
-                else:
-                    self.edges["related_work"][paper_id].append(ref_paper_id)
+                self.data["related_work"].append({"from": paper_id, "to": ref_paper_id})
 
                 if ref_paper_id not in self.papers_seen:
                     self.papers_seen.add(ref_paper_id)
-                    self.nodes["works"].append(format_paper(ref_paper))
-
-    def create_topic_links(self):
-        """Creates edges between papers that share the same topic."""
-        for topic_id, paper_list in self.topic_to_papers.items():
-            num_papers = len(paper_list)
-            if num_papers > 1:
-                for i in range(num_papers):
-                    for j in range(i + 1, num_papers):
-                        self.edges["same_topic"].append(
-                            {
-                                "source": paper_list[i],
-                                "target": paper_list[j],
-                                "relation": "same_topic",
-                            }
-                        )
-        print(f"🔗 Created {len(self.edges['same_topic'])} same-topic edges.")
+                    self.data["works"].append(format_paper(ref_paper))
 
     def save_to_json(self, filename):
-        """Saves the extracted nodes and edges to a JSON file."""
+        """Saves the extracted nodes and.data to a JSON file."""
         with open(filename, "w", encoding="utf-8") as f:
-            json.dump({"nodes": self.nodes, "edges": self.edges}, f, indent=4)
+            json.dump(self.data, f, indent=4)
 
         print(
-            f"Number of nodes: {len(self.nodes['works'])} works + {len(self.nodes['authors'])} authors"
+            f"Number of nodes: {len(self.data['works'])} works + {len(self.data['authors'])} authors"
         )
         print(
-            "Number of edges:",
-            len(self.edges["citations"]) + len(self.edges["references"]),
+            f"Number of edges: {len(self.data['citations'])} citations + {len(self.data['related_work'])} related works + {len(self.data['writes_work'])} writes works"
         )
 
         print(f"✅ Graph saved to {filename}")

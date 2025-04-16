@@ -1,7 +1,3 @@
-import requests
-import json
-
-
 def invert_abstract_index(abstract_inverted_index):
     if not abstract_inverted_index:
         return None
