@@ -182,4 +182,3 @@ if __name__ == "__main__":
     graph = PaperRetriever()
     graph.fetch_papers()
     graph.save_to_json()
-    exit()

@@ -1,0 +1,141 @@
+cluster,topic,count
+0.0,Chaos-based Image/Signal Encryption,760
+0.0,Cryptography and Data Security,516
+0.0,Advanced Steganography and Watermarking Techniques,436
+0.0,Privacy-Preserving Technologies in Data,344
+0.0,Cryptographic Implementations and Security,332
+0.0,Coding theory and cryptography,211
+0.0,Digital Media Forensic Detection,176
+0.0,Advanced Malware Detection Techniques,146
+0.0,Internet Traffic Analysis and Secure E-voting,145
+0.0,"Privacy, Security, and Data Protection",142
+0.0,Cryptography and Residue Arithmetic,123
+1.0,Topic Modeling,835
+1.0,Natural Language Processing Techniques,624
+1.0,Advanced Text Analysis Techniques,375
+1.0,Sentiment Analysis and Opinion Mining,339
+1.0,Text and Document Classification Technologies,232
+1.0,Web Data Mining and Analysis,146
+1.0,Semantic Web and Ontologies,143
+1.0,Speech and dialogue systems,102
+2.0,Domain Adaptation and Few-Shot Learning,946
+2.0,Advanced Neural Network Applications,679
+2.0,Adversarial Robustness in Machine Learning,616
+2.0,Anomaly Detection Techniques and Applications,570
+2.0,Machine Learning and Data Classification,352
+2.0,Multimodal Machine Learning Applications,348
+2.0,Generative Adversarial Networks and Image Synthesis,227
+2.0,COVID-19 diagnosis using AI,223
+2.0,Privacy-Preserving Technologies in Data,186
+2.0,AI in cancer detection,183
+2.0,Neural Networks and Applications,177
+2.0,Advanced Image and Video Retrieval Techniques,162
+2.0,Face recognition and analysis,160
+2.0,Machine Learning and ELM,160
+2.0,Video Surveillance and Tracking Methods,155
+2.0,Human Pose and Action Recognition,148
+2.0,Face and Expression Recognition,147
+2.0,Digital Media Forensic Detection,137
+2.0,Network Security and Intrusion Detection,132
+2.0,Machine Learning and Algorithms,123
+2.0,Explainable Artificial Intelligence (XAI),115
+2.0,Radiomics and Machine Learning in Medical Imaging,102
+4.0,Advanced Vision and Imaging,675
+4.0,Video Surveillance and Tracking Methods,656
+4.0,Human Pose and Action Recognition,476
+4.0,Robotics and Sensor-Based Localization,410
+4.0,Advanced Image and Video Retrieval Techniques,279
+4.0,Advanced Neural Network Applications,184
+4.0,Anomaly Detection Techniques and Applications,139
+4.0,Advanced Image Processing Techniques,116
+4.0,Image Processing Techniques and Applications,112
+4.0,Optical measurement and interference techniques,108
+4.0,Face recognition and analysis,105
+4.0,Human Motion and Animation,102
+4.0,Hand Gesture Recognition Systems,101
+5.0,Advanced Vision and Imaging,651
+5.0,Advanced Image Processing Techniques,500
+5.0,Image Enhancement Techniques,448
+5.0,Image and Signal Denoising Methods,430
+5.0,Image Processing Techniques and Applications,297
+5.0,Advanced Image Fusion Techniques,294
+5.0,Computer Graphics and Visualization Techniques,291
+5.0,Medical Image Segmentation Techniques,243
+5.0,Advanced Image and Video Retrieval Techniques,189
+5.0,Advanced Data Compression Techniques,168
+5.0,Color Science and Applications,167
+5.0,Video Coding and Compression Technologies,166
+5.0,Image Retrieval and Classification Techniques,144
+5.0,Image and Video Quality Assessment,141
+5.0,Advanced Measurement and Detection Methods,140
+5.0,Image and Object Detection Techniques,119
+5.0,3D Shape Modeling and Analysis,117
+5.0,Optical measurement and interference techniques,111
+5.0,Infrared Target Detection Methodologies,108
+6.0,Face and Expression Recognition,477
+6.0,Image Retrieval and Classification Techniques,256
+6.0,Anomaly Detection Techniques and Applications,204
+6.0,Imbalanced Data Classification Techniques,203
+6.0,Neural Networks and Applications,191
+6.0,Advanced Image and Video Retrieval Techniques,179
+6.0,Machine Learning and Data Classification,163
+6.0,Data Mining Algorithms and Applications,156
+6.0,Advanced Clustering Algorithms Research,147
+6.0,Advanced Algorithms and Applications,141
+6.0,Face recognition and analysis,128
+6.0,Network Security and Intrusion Detection,125
+6.0,Handwritten Text Recognition Techniques,122
+6.0,Speech and Audio Processing,122
+6.0,Advanced Computational Techniques and Applications,111
+6.0,Remote-Sensing Image Classification,105
+6.0,Text and Document Classification Technologies,102
+6.0,Data Stream Mining Techniques,101
+7.0,Multimodal Machine Learning Applications,1152
+7.0,Human Pose and Action Recognition,672
+7.0,Domain Adaptation and Few-Shot Learning,657
+7.0,Advanced Image and Video Retrieval Techniques,602
+7.0,Advanced Neural Network Applications,324
+7.0,Video Analysis and Summarization,232
+7.0,Topic Modeling,215
+7.0,Anomaly Detection Techniques and Applications,211
+7.0,Video Surveillance and Tracking Methods,203
+7.0,Generative Adversarial Networks and Image Synthesis,157
+7.0,Natural Language Processing Techniques,153
+7.0,Image Retrieval and Classification Techniques,123
+7.0,Visual Attention and Saliency Detection,114
+7.0,Handwritten Text Recognition Techniques,106
+8.0,Advanced Neural Network Applications,1278
+8.0,Advanced Vision and Imaging,923
+8.0,Advanced Image Processing Techniques,879
+8.0,Generative Adversarial Networks and Image Synthesis,616
+8.0,Advanced Image and Video Retrieval Techniques,590
+8.0,Domain Adaptation and Few-Shot Learning,544
+8.0,Image Enhancement Techniques,422
+8.0,Video Surveillance and Tracking Methods,416
+8.0,Image Processing Techniques and Applications,310
+8.0,Image and Signal Denoising Methods,294
+8.0,Human Pose and Action Recognition,290
+8.0,Multimodal Machine Learning Applications,276
+8.0,Computer Graphics and Visualization Techniques,249
+8.0,Robotics and Sensor-Based Localization,246
+8.0,Visual Attention and Saliency Detection,211
+8.0,Face recognition and analysis,210
+8.0,3D Shape Modeling and Analysis,199
+8.0,Digital Media Forensic Detection,159
+8.0,Advanced Image Fusion Techniques,149
+8.0,Adversarial Robustness in Machine Learning,115
+8.0,Anomaly Detection Techniques and Applications,110
+8.0,Optical measurement and interference techniques,108
+9.0,Robotic Path Planning Algorithms,439
+9.0,Metaheuristic Optimization Algorithms Research,398
+9.0,Advanced Algorithms and Applications,202
+9.0,Advanced Multi-Objective Optimization Algorithms,199
+9.0,Robotics and Sensor-Based Localization,185
+9.0,Advanced Computational Techniques and Applications,179
+9.0,Evolutionary Algorithms and Applications,172
+9.0,Target Tracking and Data Fusion in Sensor Networks,146
+9.0,Parallel Computing and Optimization Techniques,120
+9.0,Advanced Sensor and Control Systems,119
+9.0,Simulation and Modeling Applications,110
+9.0,Distributed and Parallel Computing Systems,108
+9.0,Neural Networks and Applications,103

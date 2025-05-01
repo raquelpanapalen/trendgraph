@@ -1,6 +1,9 @@
 requests
-feedparser
 networkx
 neo4j
 pandas
 tqdm
+sentence-transformers
+graphdatascience
+torch
+torch-geometric
