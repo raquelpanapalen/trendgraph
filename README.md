@@ -25,7 +25,7 @@ All outputs from the above steps are stored in the [`output`](output) folder for
 
 - **Visualizing Research Trends**  
   The graph allows us to visualize research topic trends effectively. For example:  
-  ![Emerging Topics Graph](output/emerging_topics_graph.png)
+  ![Emerging Topics Growth](output/emerging_topics_growth.png)
 
 - **GCN Predictions**  
   The GCN model provides [example predictions](output/example_predictions.txt) for the number of citations, showcasing the potential of graph-based learning.
