@@ -1,0 +1,59 @@
+Train Examples
+============================================================
+Title: A Study on Pseudo Labeled Document Constructed for Document Re-ranking
+Abstract: Document re-ranking is a middle module in information retrieval system. It's expected that more relevant documents with query appear in higher rankings, from which automatic query expansion can benefit, and it aims at improving the performance of the entire information retrieval. In this paper, we construct a pseudo labeled document based on pseudo-relevance feedback principle, and discuss about the relationship between performance of document re-ranking and the number of top documents in initial retrieval, the number of key terms from the top documents when constructing a pseudo labeled document. Experiment shows our approach of a pseudo labeled document constructed is greatly helpful to document re-ranking. It is the main contribution in the paper. Moreover, experiment shows the performance of document re-ranking is decreasing as the number of top documents increases; and increasing as the number of key terms from these documents increases.
+Year: 2009
+Predicted Citations: 2.64
+Real Citations: 4
+
+************************************************************
+
+Title: Privacy-Aware Reversible Watermarking in Cloud Computing Environments
+Abstract: As an interdisciplinary research between watermarking and cryptography, privacy-aware reversible watermarking permits a party to entrust the task of embedding watermarks to a cloud service provider without compromising information privacy. The early development of schemes was primarily based upon traditional symmetric-key cryptosystems, which involve an extra implementation cost of key exchange. Although recent research attentions were drawn to schemes compatible with asymmetric-key cryptosystems, there were notable limitations in the practical aspects. In particular, the host signal must either be enciphered in a redundant way or be pre-processed prior to encryption, which would largely limit the storage efficiency and scheme universality. To relax the restrictions, we propose a novel research paradigm and devise different schemes compatible with different homomorphic cryptosystems. In the proposed schemes, the encoding function is recognised as an operation of adding noise, whereas the decoding function is perceived as a corresponding denoising process. Both online and offline content-adaptive predictors are developed to assist watermark decoding for various operational requirements. A three-way tradeoff between the capacity, fidelity, and reversibility is analysed mathematically and empirically. It is shown that the proposed schemes achieve the state-of-the-art performance.
+Year: 2018
+Predicted Citations: 43.43
+Real Citations: 60
+
+************************************************************
+
+Title: Experimental analysis of traditional classification algorithms on bio medical dtatasets
+Abstract: Data classification in medical field is distinct from that in other fields, because the medical data are heterogeneous, skewed and complex in nature and medical data classification involves multi class classification. In this paper we present the experimental analysis of well-known traditional classification algorithms on bio-medical datasets in order to observe their performance. This experimental analysis will provide deeper insight in designing the efficient classification algorithm for bio medical data.
+Year: 2016
+Predicted Citations: 4.57
+Real Citations: 5
+
+************************************************************
+
+============================================================
+============================================================
+
+
+Test Examples
+============================================================
+Title: Salvaging Merkle-Damgard for Practical Applications.
+Abstract: Many cryptographic applications of hash functions are analyzed in the random oracle model. Unfortunately, most concrete hash functions, including the SHA family, use the iterative (strengthened) Merkle-Damgard transform applied to a corresponding compression function. Moreover, it is well known that the resulting structured hash function cannot be generically used as a random oracle, even if the compression function is assumed to be ideal. This leaves a large disconnect between theory and practice: although no attack is known for many concrete applications utilizing existing (Merkle-Damgard based) hash functions, there is no security guarantee either, even by idealizing the compression function.
+
+Motivated by this question, we initiate a rigorous and modular study of developing new notions of (still idealized) hash functions which would be (a) natural and elegant; (b) sufficient for arguing security of important applications; and (c) provably met by the (strengthened) Merkle-Damgard transform, applied to a strong enough compression function. In particular, we develop two such notions satisfying (a)-(c): a preimage aware function ensures that the attacker cannot produce a useful output of the function without already knowing the corresponding preimage, and a public-use random oracle , which is a random oracle that reveals to attackers messages queried by honest parties.
+Year: 2009
+Predicted Citations: 4.62
+Real Citations: 1
+
+************************************************************
+
+Title: TKSE: Trustworthy Keyword Search Over Encrypted Data With Two-Side Verifiability via Blockchain
+Abstract: As a very attractive computing paradigm, cloud computing makes it possible for resource-constrained users to enjoy cost-effective and flexible resources of diversity. Considering the untrustworthiness of cloud servers and the data privacy of users, it is necessary to encrypt the data before outsourcing it to the cloud. However, the form of encrypted storage also poses a series of problems, such as: How can users search over the outsourced data? How to realize user-side verifiability of search results to resist malicious cloud servers? How to enable server-side verifiability of outsourced data to check malicious data owners? How to achieve payment fairness between the user and the cloud without introducing any third party? Towards addressing these challenging issues, in this paper, we introduce TKSE, a trustworthy keyword search scheme over encrypted data without any third party, trusted or not. In TKSE, the encrypted data index based on digital signature allows a user to search over the outsourced encrypted data and check whether the search result returned by the cloud fulfills the pre-specified search requirements. In particular, for the first time, TKSE realizes server-side verifiability which protects honest cloud servers from being framed by malicious data owners in the data storage phase. Furthermore, blockchain technologies and hash functions are used to enable payment fairness of search fees without introducing any third party even if the user or the cloud is malicious. Our security analysis and performance evaluation indicate that TKSE is secure and efficient and it is suitable for cloud computing.
+Year: 2018
+Predicted Citations: 51.89
+Real Citations: 96
+
+************************************************************
+
+Title: Lossless Compression Techniques in Edge Computing for Mission-Critical Applications in the IoT
+Abstract: The need of data compression at smart Edge/Fog-based gateways is undeniable as data compression can significantly reduce the amount of data that has to be transmitted over a network. This, in turn, has a direct impact on reducing transmission latency and increasing network bandwidth. In time-critical and data sensitive IoT applications such as healthcare, lossless data compression is preferable as compressed data can be recovered without losing any information. However, it is not an easy task to choose a proper lossless data compression algorithm for IoT applications as each lossless data compression method has its own advantages and disadvantages. This paper focuses on the analysis of lossless data compression algorithms run at smart Edge/Fog gateways. Widely used lossless data compression are run at different hardware which is often used as smart Fog/Edge gateways. The latency of data compression and compression rate in different cases of input data sizes are analyzed. The paper provides guidelines for choosing a proper lossless data compression algorithm for time-critical IoT applications.
+Year: 2019
+Predicted Citations: 13.12
+Real Citations: 25
+
+************************************************************
+
+
