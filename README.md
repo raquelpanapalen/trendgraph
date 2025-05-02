@@ -1,11 +1,12 @@
 # TrendGraph: Academic Research Trends using Knowledge Graphs
 
-This project is part of the **Knowledge Graphs** course at TU Wien. It demonstrates the process of building and analyzing a knowledge graph using data from OpenAlex, Neo4j as a graph database, and various machine learning techniques.
+ For a full technical explanation of the project, refer to the portfolio document available [here](docs/Portfolio.png).
 
 ## Steps Overview
 
 1. **Data Preprocessing**  
     The script [`preprocess.py`](src/preprocess.py) is used to fetch and preprocess data from OpenAlex. This step prepares the raw data for graph construction and saves it in a json format ([`openalex_research_papers.json`](data/openalex_research_papers.json)).
+    > **Warning**: Downloading all the data from OpenAlex can take a significant amount.
 
 2. **Graph Construction**  
     Using Neo4j as the graph database, we build a knowledge graph from the preprocessed data. This step involves defining nodes, relationships, and properties. The script used is [`build_graph.py`](src/build_graph.py).
