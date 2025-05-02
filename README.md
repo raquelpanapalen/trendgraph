@@ -1,6 +1,6 @@
 # TrendGraph: Academic Research Trends using Knowledge Graphs
 
- For a full technical explanation of the project, refer to the portfolio document available [here](docs/Portfolio.png).
+ For a full technical explanation of the project, refer to the portfolio document available [here](docs/Portfolio.pdf).
 
 ## Steps Overview
 
