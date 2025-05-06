@@ -6,7 +6,16 @@ from neo4j import GraphDatabase, Session
 def create_graphdb(tx: Session, data):
     # Create authors
     for author in tqdm(data["authors"]):
-        tx.run("MERGE (a:Author {id: $id})", id=author["id"])
+        tx.execute_write(
+            lambda tx, elem: tx.run(
+                """
+                    MERGE (a:Author {id: $id})
+                    ON MATCH SET a.name = $name
+                """,
+                elem,
+            ),
+            author,
+        )
 
     # Create works
     for work in tqdm(data["works"]):
@@ -42,7 +51,7 @@ def create_graphdb(tx: Session, data):
         tx.execute_write(
             lambda tx, elem: tx.run(
                 """
-                MATCH (a:Author {author_id: $author_id})
+                MATCH (a:Author {id: $author_id})
                 MATCH (p:Paper {paper_id: $paper_id})
                 MERGE (a)-[:WROTE]->(p)
             """,
